@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+require("dotenv").config();
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -32,7 +34,7 @@ app.use(shopRoutes);
 
 mongoose
   .connect(
-    "mongodb+srv://ghelanijimmy:azkmdg2jg@cluster0.gx2ohqg.mongodb.net/shop?retryWrites=true&w=majority"
+    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.gx2ohqg.mongodb.net/shop?retryWrites=true&w=majority`
   )
   .then(() => {
     User.findOne()
